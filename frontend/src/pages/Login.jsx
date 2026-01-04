@@ -6,6 +6,9 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
 import axios from "axios";
 import { authDataContext } from "../../context/authContext";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../utils/Firebase";
+import { userDataContext } from "../../context/UserContext";
 
 
 const Login = () => {
@@ -13,6 +16,9 @@ const Login = () => {
   let[email,setEmail]=useState("");
   let[password,setPassword]=useState("")
   let {serverUrl}=useContext(authDataContext);
+  let {getCurrentUser}=useContext(userDataContext)
+
+  let navigate = useNavigate()
 
   const handlelogin=async (e) => {
     e.preventDefault();
@@ -21,6 +27,9 @@ const Login = () => {
         email,password
       },{withCredentials:true})
       console.log(result.data);
+      getCurrentUser("/")
+      navigate("/")
+
 
     }catch(error){
      console.log(error)
@@ -28,8 +37,26 @@ const Login = () => {
     }
     
   }
-
-  let navigate = useNavigate();
+  const googleLogin= async()=>{
+    try{
+      const response = await signInWithPopup(auth,provider)
+      let user =response.user
+      let name=user.displayName;
+      let email=user.email
+      
+      const result=await axios.post(serverUrl + '/api/auth/googlelogin',{
+             name,email
+      },{withCredentials:true})
+      console.log(result.data)
+      getCurrentUser("/")
+      navigate("/")
+  
+    }catch(error){
+      console.log(error)
+  
+    }
+   }
+  
   return (
     <div className="w-[100vw] h-[100vh] bg-gradient-to-l from-[#c7c7c7] to-[#141414] text-[white] flex flex-col items-center justify-start">
       <div className="w-[100%] h-[80px] flex items-center justify-start px-[30px] gap-[10px] cursor-pointer">
@@ -43,13 +70,18 @@ const Login = () => {
         <span className="text-[25px] font-semibold">Registration Page</span>
         <span className="text-[16px]">Welcome to eKart, place your order</span>
       </div>
-      <div className="max-w-[600px] w-[90%] h-[500px] bg-[#00000025] border-[1px] border-[#96969635] backdrop:blur-2xl rounded-lg shadow-lg flex items-center justify-center">
+      <div className="max-w-[600px] w-[90%] h-[500px] bg-[#00000025] border-[1px]
+       border-[#96969635] backdrop:blur-2xl rounded-lg shadow-lg flex 
+       items-center justify-center">
+        
         <form
           onSubmit={handlelogin}
           action=""
           className="w-[90%] h-[90%] flex flex-col items-center justify-start gap-[20px] "
         >
-          <div className="w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center justify-center gap-[10px] py-[20px] cursor-pointer">
+          <div className="w-[90%] h-[50px] bg-[#42656cae] rounded-lg flex items-center
+           justify-center gap-[10px] py-[20px] cursor-pointer"
+           onClick={googleLogin}>
             <img src={google} className="w-[20px]" alt="" />
             Registration with google
           </div>
