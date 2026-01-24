@@ -67,7 +67,7 @@ const Login = () => {
       </div>
 
       <div className="w-[100%] h-[100px] flex items-center justify-center flex-col gap-[10px]">
-        <span className="text-[25px] font-semibold">Registration Page</span>
+        <span className="text-[25px] font-semibold">Login Page</span>
         <span className="text-[16px]">Welcome to eKart, place your order</span>
       </div>
       <div className="max-w-[600px] w-[90%] h-[500px] bg-[#00000025] border-[1px]
