@@ -5,8 +5,8 @@ import adminAuth from "../middleware/adminAuth.js"
 
 let userRoutes = express.Router()
 
-userRoutes.get("/getCurrentuser", isAuth,getCurrentUser)
-userRoutes.get("/getadmin", adminAuth,getAdmin)
+userRoutes.get("/getCurrentuser", isAuth,getCurrentUser) // isAuth->middlewire 
+userRoutes.get("/getadmin", adminAuth,getAdmin)//adminAuth->middlewire
 
 
 

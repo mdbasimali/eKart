@@ -11,7 +11,8 @@ const Nav = () => {
   let {getAdmin}=useContext(adminDataContext);
   const logout =async()=>{
     try {
-      const result = await axios.get(serverUrl + "/api/auth/logout",{withCredentials:true})
+      const result = await axios.get(serverUrl + "/api/auth/logout",
+        {withCredentials:true})
       console.log(result.data);
       navigate("/login");
       getAdmin();
@@ -38,7 +39,8 @@ const Nav = () => {
     rounded-2xl text-white" onClick={logout}>
          LogOut
     </button>
-      
+
+
     </div>
   )
 }
