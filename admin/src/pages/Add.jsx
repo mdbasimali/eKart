@@ -78,6 +78,7 @@ justify-center flex-col gap-[10px]'></div>
 <p className='text-[20px] md:text-[25px] font-semibold'>
   Product Name
 </p>
+
 <input type="text"placeholder='Type here' 
 className='w-[600px] max-w-[98%] h-[40px] rounded-lg
  hover:border-[#46d1f7] border-[2px] cursor-pointer bg-slate-600 px-[20px] 
