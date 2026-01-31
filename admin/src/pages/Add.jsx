@@ -59,7 +59,7 @@ justify-start'>
     shadow-2xl hover:border-[#1d1d1d] border-[2px]'/>
     <input type="file"id='image3' hidden onChange={(e)=>setImage3(e.target.files[0])} />
   </label>
-  
+
 
    <label htmlFor="image4" className='w-[65px] h-[65px]
   md:w-[100px] md:h-[100px] cursor-pointer 
@@ -69,10 +69,21 @@ justify-start'>
     <input type="file"id='image4' hidden onChange={(e)=>setImage4(e.target.files[0])} />
   </label>
 
-  
+</div>
+</div>
 
-</div>
-</div>
+<div className='w-[80%] h-[100px] flex items-start
+justify-center flex-col gap-[10px]'></div>
+
+<p className='text-[20px] md:text-[25px] font-semibold'>
+  Product Name
+</p>
+<input type="text"placeholder='Type here' 
+className='w-[600px] max-w-[98%] h-[40px] rounded-lg
+ hover:border-[#46d1f7] border-[2px] cursor-pointer bg-slate-600 px-[20px] 
+ text-[18px] placeholder:text-[#ffffffc2]'
+/>
+
 
   </form>
     </div>
